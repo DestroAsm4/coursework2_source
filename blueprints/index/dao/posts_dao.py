@@ -43,3 +43,4 @@ class PostsDAO:
         all_post = self.get_post_all()
         needfull_post = list(filter(lambda item: item['pk'] == pk, all_post))
         return needfull_post
+

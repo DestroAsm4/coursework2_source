@@ -28,7 +28,7 @@
     <section class="items">
       <div class="items__item item item--post">
         <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
+          <a href="/user-feed/{{ post.poster_name }}" class="item__head">
             <div class="item__ava-wrap">
               {% if type_link_ava == 'external'  %}
               <img src="{{post.poster_avatar}}" alt="" class="item__ava" width="47">
@@ -55,7 +55,7 @@
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
-            <p class="item__comments-counter">{{cont_comments}} комментария</p>
+            <p class="item__comments-counter">{{cont_comments}}</p>
             <div class="item__counter">
               <img src="{{ url_for('static',  filename='img/eye.png') }}" alt="" class="item__counter-icon" width="26">
               <span class="item__counter-text">1023</span>

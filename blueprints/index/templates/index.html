@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SKYPROGRAM</title>
-  <link href="static/css/styles.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/styles.min.css') }} " rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         </svg>
       </a>
       <a href="/bookmarks.html" class="header__bookmark-btn">
-        <img src="static/img/bookmark.png" alt="" class="header__bookmark-icon" width="28">
+        <img src="{{ url_for('static', filename='img/bookmark.png') }}" alt="" class="header__bookmark-icon" width="28">
         <span class="header__bookmark-counter">3</span>
       </a>
     </div>
@@ -26,17 +26,19 @@
   <main class="container">
 
     <div class="search">
-      <form action="/search" class="search__form">
-        <input type="search" class="search__input" neme="quest">
+      <form action="/search/" class="search__form" method="get">
+        <input type="search" class="search__input" name="quest" value="{{ quest }}">
       </form>
     </div>
+
+
 
     <section class="items">
 
       {% for post in posts %}
       <div class="items__item item">
         <div class="item__top">
-          <a href="/user-feed.html" class="item__head">
+          <a href="/user-feed/{{post.poster_name }}" class="item__head">
             <div class="item__ava-wrap">
               {% if post.type_link_ava == 'external'  %}
               <img src="{{post.poster_avatar}}" alt="" class="item__ava" width="47">
@@ -47,20 +49,20 @@
             <span class="item__username">{{ post.poster_name }}</span>
           </a>
         </div>
-        <a href="/post.html" class="item__post-link">
+        <a href="/post/{{post.pk}}" class="item__post-link">
           <img src="{{post.pic}}" alt="" width="348" class="item__post-img">
         </a>
         <p class="item__descr">{{post.content}}</p>
         <div class="item__post-info">
           <div class="item__counter">
-            <img src="static/img/eye.png" alt="" class="item__counter-icon" width="26">
+            <img src="{{ url_for('static', filename='img/eye.png') }}" alt="" class="item__counter-icon" width="26">
             <span class="item__counter-text">{{post.views_count}}</span>
           </div>
         </div>
         <div class="item__post-bottom">
           <a href="/post/{{post.pk}}" class="item__btn-more">Подробнее</a>
           <button type="button" class="item__bookmark-btn">
-            <img src="static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
+            <img src="{{ url_for('static', filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
           </button>
         </div>
       </div>
