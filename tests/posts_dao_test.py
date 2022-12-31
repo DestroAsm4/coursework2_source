@@ -1,5 +1,5 @@
 import pytest
-from posts_dao import PostsDAO
+from blueprints.index.dao.posts_dao import PostsDAO
 
 
 @pytest.fixture()

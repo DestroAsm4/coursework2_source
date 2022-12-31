@@ -1,5 +1,5 @@
 import pytest
-from comments_dao import CommentsDAO
+from blueprints.index.dao.comments_dao import CommentsDAO
 
 @pytest.fixture()
 def comments_dao_instance():

@@ -20,3 +20,11 @@ def get_posts_by_user(user_name):
     all_post = get_post_all()
     needfull_post = list(filter(lambda item: item['poster_name'] == user_name, all_post))
     return needfull_post
+
+
+def type_url(path):
+    if path[:4] == "http" or path[:5] == 'https':
+        return "external"
+    else:
+        return "interior"
+
