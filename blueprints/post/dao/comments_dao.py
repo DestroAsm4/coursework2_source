@@ -8,7 +8,7 @@ class CommentsDAO:
 
     def load_data_comments(self):
         '''
-        :return: возвращает список словарей с данными по комментариям
+        :return: returns list of dictionary with data about comments
         '''
         with open(os.path.join(self.path), 'r', encoding='utf-8') as jfile:
             result = json.load(jfile)
@@ -16,8 +16,8 @@ class CommentsDAO:
 
     def get_comments_by_post_id(self, post_id):
         '''
-        :param post_id: получает номер идентификатора коментариев
-        :return: возвращает список словарей, где идентификатор совпадает с искомым
+        :param post_id: gets id comment
+        :return: returns list of dictionary by id
         '''
         comments = self.load_data_comments()
         needfull_comments_by_id = list(filter(lambda item: item['post_id'] == post_id, comments))

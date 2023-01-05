@@ -5,6 +5,7 @@ bookmarks_dao_instance = BookmarksDAO(os.path.join('data/bookmarks.json'))
 
 
 def type_url(path):
+    '''checking type link'''
     if path[:4] == "http" or path[:5] == 'https':
         return "external"
     else:
@@ -12,6 +13,8 @@ def type_url(path):
 
 
 def add_type_link_ava_and_has_bookmarks(posts):
+    '''adds in dictionary has_bookmarks, type_link_ava, type_link_pic
+    reduction content'''
     for post in posts:
 
         if bookmarks_dao_instance.has_bookmarks(post):

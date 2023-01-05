@@ -1,8 +1,7 @@
 import pytest
 from run import app
-#
-#
-# # создаем фикстуру для тестирования всех вьюшек (main, candidates, vacancies) app.test_client()
+
+# creating fixture for all tests
 @pytest.fixture()
 def test_client():
     return app.test_client()
