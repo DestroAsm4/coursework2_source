@@ -1,6 +1,6 @@
 from flask import Flask
 from blueprints.index.views import index_blueprint
-from blueprints.bokkmarks.views import bookmarks_blueprint
+from blueprints.bookmarks.views import bookmarks_blueprint
 from blueprints.post.views import post_blueprint
 from blueprints.api.views import api_blueprint
 

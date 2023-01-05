@@ -1,4 +1,4 @@
-from blueprints.bokkmarks.dao.bookmarks_dao import BookmarksDAO
+from blueprints.bookmarks.dao.bookmarks_dao import BookmarksDAO
 import os
 
 bookmarks_dao_instance = BookmarksDAO(os.path.join('data/bookmarks.json'))
@@ -11,7 +11,7 @@ def type_url(path):
         return "interior"
 
 
-def type_link_ava_and_has_bookmarks(posts):
+def add_type_link_ava_and_has_bookmarks(posts):
     for post in posts:
 
         if bookmarks_dao_instance.has_bookmarks(post):
