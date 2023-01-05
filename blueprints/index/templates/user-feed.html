@@ -42,7 +42,7 @@
         <a href="/post/{{post.pk}}" class="item__post-link">
           <img src="{{post.pic}}" alt="" width="348" class="item__post-img">
         </a>
-        <p class="item__descr"><a href="#" class="item__tag">#food</a> {{ post.content }}</p>
+        <p class="item__descr">{{ post.content| safe }}</p>
         <div class="item__post-info">
           <div class="item__counter">
             <img src="{{ url_for('static', filename='img/eye.png') }}" alt="" class="item__counter-icon" width="26">
@@ -51,9 +51,19 @@
         </div>
         <div class="item__post-bottom">
           <a href="/post.html" class="item__btn-more">Подробнее</a>
-          <button type="button" class="item__bookmark-btn">
-            <img src="{{ url_for('static', filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
-          </button>
+          {% if post.has_bookmark == True %}
+          <form action="/bookmarks/remove/{{post.pk}} " method="get" >
+            <button type="submit" class="item__bookmark-btn" >
+              <img src="{{ url_for('static',  filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
+            </button>
+          </form>
+          {% else %}
+          <form action="bookmarks/add/{{post.pk}} " method="get" >
+            <button type="submit" class="item__bookmark-btn" >
+              <img src="{{ url_for('static',  filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
+            </button>
+          </form>
+          {% endif %}
         </div>
       </div>
     {% endfor %}

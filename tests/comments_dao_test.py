@@ -1,9 +1,9 @@
 import pytest
-from blueprints.index.dao.comments_dao import CommentsDAO
+from blueprints.post.dao.comments_dao import CommentsDAO
 
 @pytest.fixture()
 def comments_dao_instance():
-    comments_dao_instance = CommentsDAO('data/comments.json')
+    comments_dao_instance = CommentsDAO('data/post.json')
     return comments_dao_instance
 
 

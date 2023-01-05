@@ -1,25 +1,7 @@
+from blueprints.bokkmarks.dao.bookmarks_dao import BookmarksDAO
 import os
-import json
 
-
-def get_post_all():
-    '''
-    грузит данные из posts.json,
-    :return: возвращает список словарей
-    '''
-    with open(os.path.join('data/posts.json'), 'r', encoding='utf-8') as jfile:
-        result = json.load(jfile)
-        return result
-
-
-def get_posts_by_user(user_name):
-    '''
-    :param user_name: имя пользователя
-    :return: возвращает словари принадлежащие пользователю
-    '''
-    all_post = get_post_all()
-    needfull_post = list(filter(lambda item: item['poster_name'] == user_name, all_post))
-    return needfull_post
+bookmarks_dao_instance = BookmarksDAO(os.path.join('data/bookmarks.json'))
 
 
 def type_url(path):
@@ -28,3 +10,24 @@ def type_url(path):
     else:
         return "interior"
 
+
+def type_link_ava_and_has_bookmarks(posts):
+    for post in posts:
+
+        if bookmarks_dao_instance.has_bookmarks(post):
+            post['has_bookmark'] = True
+        else:
+            post['has_bookmark'] = False
+
+        if type_url(post['poster_avatar']) == 'external':
+            post['type_link_ava'] = 'external'
+        else:
+            post['type_link_ava'] = 'internal'
+        if type_url(post['pic']) == 'external':
+            post['type_link_pic'] = 'external'
+        else:
+            post['type_link_pic'] = 'external'
+
+        post['content'] = post['content'][:40] + '\n...'
+
+    return posts

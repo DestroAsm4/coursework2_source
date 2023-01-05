@@ -12,8 +12,16 @@ class PostsDAO:
         :return: возвращает список словарей
         '''
         with open(os.path.join(self.path), 'r', encoding='utf-8') as jfile:
-            result = json.load(jfile)
-            return result
+            posts = json.load(jfile)
+
+            for post in posts:
+                split_post = post['content'].split()
+                for i, word in enumerate(split_post):
+                    if word[0] == '#':
+                        split_post[i] = f'<a href="/tag/{word[1:]}">{word}</a>'
+                post['content'] = ' '.join(split_post)
+
+            return posts
 
     def get_posts_by_user(self, user_name):
         '''
@@ -42,5 +50,5 @@ class PostsDAO:
         '''
         all_post = self.get_post_all()
         needfull_post = list(filter(lambda item: item['pk'] == pk, all_post))
-        return needfull_post
+        return needfull_post[0]
 

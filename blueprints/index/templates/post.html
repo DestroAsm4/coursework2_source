@@ -38,9 +38,23 @@
             </div>
             <span class="item__username">{{ post.poster_name }}</span>
           </a>
-          <button type="button" class="item__bookmark-btn">
-            <img src="{{ url_for('static',  filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
-          </button>
+
+
+          {% if has_bookmark == True %}
+          <form action="/bookmarks/remove/{{post.pk}} " method="get" >
+            <button type="submit" class="item__bookmark-btn" >
+              <img src="{{ url_for('static',  filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
+            </button>
+          </form>
+          {% else %}
+          <form action="bookmarks/add/{{post.pk}} " method="get" >
+            <button type="submit" class="item__bookmark-btn" >
+              <img src="{{ url_for('static',  filename='img/bookmark.png') }}" alt="" class="item__bookmark-icon" width="24">
+            </button>
+          </form>
+          {% endif %}
+
+
         </div>
         <a href="" class="item__post-link">
           {% if type_link_pic == 'external'  %}
@@ -51,7 +65,7 @@
         </a>
         <div class="item__descr">
           <p class="item__text">
-            {{post.content}}</p>
+            {{post.content | safe}}</p>
         </div>
         <div class="item__bottom">
           <div class="item__post-info">
