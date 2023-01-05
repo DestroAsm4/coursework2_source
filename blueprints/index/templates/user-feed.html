@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="item__post-bottom">
-          <a href="/post.html" class="item__btn-more">Подробнее</a>
+          <a href="/post/{{post.pk}}" class="item__btn-more">Подробнее</a>
           {% if post.has_bookmark == True %}
           <form action="/bookmarks/remove/{{post.pk}} " method="get" >
             <button type="submit" class="item__bookmark-btn" >
