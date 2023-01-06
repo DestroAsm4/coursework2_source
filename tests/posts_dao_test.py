@@ -38,10 +38,10 @@ class TestPostsDAO:
     def test_get_posts_by_pk(self, post_dao_instance):
         '''checking gets data of posts by pk'''
         posts_by_pk = post_dao_instance.get_post_by_pk(1)
-        assert type(posts_by_pk) == list, 'Не тот тип данных'
+        assert type(posts_by_pk) == dict, 'Не тот тип данных'
         assert len(posts_by_pk) > 0, 'Пустой список постов'
-        assert set(posts_by_pk[0].keys()) == keys_should_by, 'не соответствующие ключи'
-        assert posts_by_pk[0]['pk'] == 1, 'данные не того кандидата'
+        assert set(posts_by_pk.keys()) == keys_should_by, 'не соответствующие ключи'
+        assert posts_by_pk['pk'] == 1, 'данные не того кандидата'
 
     def test_search_for_posts(self, post_dao_instance):
         '''checking gets data of posts by quest "квадрат"'''

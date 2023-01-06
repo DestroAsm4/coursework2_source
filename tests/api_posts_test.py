@@ -32,4 +32,4 @@ class TestIndex:
         '''Checking the post API for content and keys '''
         response = test_client.get('/api/posts/4', follow_redirects=True)
         post = response.json
-        assert type(post[0]) == dict, "Контент страницы неверный"
+        assert type(post) == dict, "Контент страницы неверный"

@@ -1,9 +1,13 @@
 import pytest
 from blueprints.post.dao.comments_dao import CommentsDAO
 
+
+
+
+
 @pytest.fixture()
 def comments_dao_instance():
-    comments_dao_instance = CommentsDAO('data/post.json')
+    comments_dao_instance = CommentsDAO('data/comments.json')
     return comments_dao_instance
 
 
@@ -12,6 +16,7 @@ keys_should_by = {'post_id',
                   'comment',
                   'pk'
                   }
+
 
 class TestComments:
 
